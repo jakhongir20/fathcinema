@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Phone, Menu, X } from 'lucide-react'
 import { cn } from '@/lib/utils'
@@ -35,12 +36,19 @@ export default function Header() {
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: [0.25, 0.4, 0.25, 1] }}
       >
-        <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
           <a
             href="#hero"
-            className="text-xl font-semibold tracking-tight hover:opacity-80 transition-opacity"
+            className="hover:opacity-80 transition-opacity"
           >
-            Fathcinema
+            <Image
+              src="/logo_white.svg"
+              alt="Fathcinema"
+              width={180}
+              height={50}
+              className="h-10 md:h-11 w-auto"
+              priority
+            />
           </a>
 
           <nav className="hidden md:flex items-center gap-8">

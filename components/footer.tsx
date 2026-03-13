@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { Phone, Mail, MapPin } from 'lucide-react'
 
@@ -15,9 +16,13 @@ export default function Footer() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h3 className="text-xl font-semibold tracking-tight mb-3">
-              Fathcinema
-            </h3>
+            <Image
+              src="/logo_white.svg"
+              alt="Fathcinema"
+              width={200}
+              height={56}
+              className="h-11 w-auto mb-4"
+            />
             <p className="text-sm text-white/40 leading-relaxed max-w-xs">
               Video production va performance marketing orqali brendingizni
               rivojlantiring.

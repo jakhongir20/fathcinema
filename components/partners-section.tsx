@@ -1,16 +1,29 @@
 'use client'
 
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 
 const partners = [
-  { name: 'TechCorp', initials: 'TC' },
-  { name: 'MediaFlow', initials: 'MF' },
-  { name: 'BuildStudio', initials: 'BS' },
-  { name: 'GrowthLab', initials: 'GL' },
-  { name: 'DataPrime', initials: 'DP' },
-  { name: 'CloudNine', initials: 'CN' },
-  { name: 'VisionArt', initials: 'VA' },
-  { name: 'NextLevel', initials: 'NL' },
+  { name: 'Avlo', logo: '/logos/avlo.png' },
+  { name: 'CNC', logo: '/logos/cnc.png' },
+  { name: 'Canada', logo: '/logos/canada.png' },
+  { name: 'ChatGPT', logo: '/logos/chatgpt.png' },
+  { name: 'Deluxe', logo: '/logos/deluxe.png' },
+  { name: 'Gilam', logo: '/logos/gilam.png' },
+  { name: 'Hamkor', logo: '/logos/hamkor.png' },
+  { name: 'Mask Group', logo: '/logos/maskgroup.png' },
+  { name: 'Merit', logo: '/logos/merit.png' },
+  { name: 'My5', logo: '/logos/my5.png' },
+  { name: 'PDP', logo: '/logos/pdp.png' },
+  { name: 'Parda', logo: '/logos/parda.png' },
+  { name: 'Qamar', logo: '/logos/qamar.png' },
+  { name: 'Siluet', logo: '/logos/siluet.png' },
+  { name: 'Uz Auto', logo: '/logos/uzauto.png' },
+  { name: 'YumoBIO', logo: '/logos/yumobio.png' },
+  { name: 'Partner 17', logo: '/logos/image135.png' },
+  { name: 'Partner 18', logo: '/logos/image148.png' },
+  { name: 'Partner 19', logo: '/logos/image150.png' },
+  { name: 'Partner 20', logo: '/logos/image155.png' },
 ]
 
 export default function PartnersSection() {
@@ -51,44 +64,41 @@ export default function PartnersSection() {
         </motion.p>
 
         <motion.div
-          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 md:gap-6"
+          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-5"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-50px' }}
           variants={{
             hidden: {},
-            visible: { transition: { staggerChildren: 0.08 } },
+            visible: { transition: { staggerChildren: 0.06 } },
           }}
         >
           {partners.map((partner) => (
             <motion.div
               key={partner.name}
-              className="group relative h-24 md:h-32 rounded-xl border border-white/[0.06] bg-white/[0.02] flex items-center justify-center cursor-pointer overflow-hidden transition-all duration-500 hover:border-white/[0.12] hover:bg-white/[0.04]"
+              className="group flex flex-col items-center gap-3"
               variants={{
-                hidden: { opacity: 0, y: 20, scale: 0.95 },
+                hidden: { opacity: 0, y: 20 },
                 visible: {
                   opacity: 1,
                   y: 0,
-                  scale: 1,
                   transition: { duration: 0.5 },
                 },
               }}
-              whileHover={{ scale: 1.02 }}
             >
-              {/* Placeholder logo — replace with actual partner logos */}
-              <div className="flex items-center gap-3 transition-all duration-500 grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100">
-                <div className="w-9 h-9 md:w-10 md:h-10 rounded-lg bg-gradient-to-br from-blue-500/30 to-violet-500/30 flex items-center justify-center border border-white/[0.08]">
-                  <span className="text-xs md:text-sm font-semibold text-white/80">
-                    {partner.initials}
-                  </span>
-                </div>
-                <span className="text-sm md:text-base font-medium text-white/60 group-hover:text-white/90 transition-colors duration-500">
-                  {partner.name}
-                </span>
+              <div className="relative w-full h-12 md:h-14 flex items-center justify-center">
+                <Image
+                  src={partner.logo}
+                  alt={`${partner.name} logo`}
+                  width={140}
+                  height={56}
+                  className="object-contain max-h-12 md:max-h-14 w-auto opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-400"
+                />
               </div>
 
-              {/* Hover glow */}
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-violet-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <span className="text-[11px] font-medium text-white/30 group-hover:text-white/60 transition-colors duration-400 tracking-wide">
+                {partner.name}
+              </span>
             </motion.div>
           ))}
         </motion.div>
