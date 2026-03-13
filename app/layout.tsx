@@ -48,7 +48,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="uz" className={inter.variable}>
-      <body className={inter.className}>{children}</body>
+      <body className={`${inter.className} noise-overlay`}>{children}</body>
     </html>
   )
 }

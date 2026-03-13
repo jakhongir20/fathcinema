@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, type FormEvent } from 'react'
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { Send, CheckCircle2 } from 'lucide-react'
 import { Input } from '@/components/ui/input'
@@ -42,8 +43,22 @@ export default function ContactSection() {
   }
 
   return (
-    <section id="contact" className="py-24 md:py-32 lg:py-40 px-6">
-      <div className="max-w-2xl mx-auto">
+    <section id="contact" className="relative py-24 md:py-32 lg:py-40 px-6 overflow-hidden">
+      {/* Background: logo watermark left */}
+      <div className="absolute -left-10 bottom-10 w-[350px] h-[350px] md:w-[500px] md:h-[500px] opacity-[0.035] pointer-events-none select-none rotate-12">
+        <Image
+          src="/logo_white.svg"
+          alt=""
+          fill
+          className="object-contain"
+          aria-hidden="true"
+        />
+      </div>
+      {/* Background: gradient orbs */}
+      <div className="absolute -left-32 top-10 w-[500px] h-[500px] rounded-full bg-blue-500/15 blur-[170px] pointer-events-none" />
+      <div className="absolute -right-40 bottom-10 w-[400px] h-[400px] rounded-full bg-violet-500/10 blur-[150px] pointer-events-none" />
+
+      <div className="relative max-w-2xl mx-auto">
         <motion.h2
           className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.75rem] font-medium text-center leading-tight mb-16 md:mb-20 tracking-tight"
           initial={{ opacity: 0, y: 30 }}

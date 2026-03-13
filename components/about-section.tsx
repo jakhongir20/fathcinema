@@ -1,11 +1,66 @@
 'use client'
 
-import { useState, useCallback, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { useState, useCallback, useEffect, useRef } from 'react'
+import Image from 'next/image'
+import { motion, AnimatePresence, useInView } from 'framer-motion'
 import { Play, X } from 'lucide-react'
+
+function useCountUp(end: number, duration = 2000, inView = false) {
+  const [count, setCount] = useState(0)
+  const hasAnimated = useRef(false)
+
+  useEffect(() => {
+    if (!inView || hasAnimated.current) return
+    hasAnimated.current = true
+
+    const startTime = performance.now()
+    const step = (now: number) => {
+      const progress = Math.min((now - startTime) / duration, 1)
+      const eased = 1 - Math.pow(1 - progress, 3)
+      setCount(Math.floor(eased * end))
+      if (progress < 1) requestAnimationFrame(step)
+    }
+    requestAnimationFrame(step)
+  }, [inView, end, duration])
+
+  return count
+}
 
 const DEMO_VIDEO_URL =
   'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4'
+
+function CountUpStats() {
+  const ref = useRef<HTMLDivElement>(null)
+  const inView = useInView(ref, { once: true, margin: '-100px' })
+
+  const year = useCountUp(2023, 2000, inView)
+  const projects = useCountUp(50, 2000, inView)
+  const partners = useCountUp(30, 2000, inView)
+
+  return (
+    <motion.div
+      ref={ref}
+      className="grid grid-cols-3 gap-6 mt-10 pt-10 border-t border-white/[0.06]"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-100px' }}
+      transition={{ duration: 0.6, delay: 0.6 }}
+    >
+      <div>
+        <p className="text-2xl md:text-3xl font-semibold">{year}</p>
+        <p className="text-xs md:text-sm text-white/40 mt-1">yildan beri</p>
+      </div>
+      <div>
+        <p className="text-2xl md:text-3xl font-semibold">{projects}+</p>
+        <p className="text-xs md:text-sm text-white/40 mt-1">loyihalar</p>
+      </div>
+      <div>
+        <p className="text-2xl md:text-3xl font-semibold">{partners}+</p>
+        <p className="text-xs md:text-sm text-white/40 mt-1">hamkorlar</p>
+      </div>
+    </motion.div>
+  )
+}
 
 export default function AboutSection() {
   const [videoOpen, setVideoOpen] = useState(false)
@@ -27,8 +82,23 @@ export default function AboutSection() {
 
   return (
     <>
-      <section id="about" className="py-24 md:py-32 lg:py-40 px-6">
-        <div className="max-w-7xl mx-auto">
+      <div className="gradient-divider" />
+      <section id="about" className="relative py-24 md:py-32 lg:py-40 px-6 overflow-hidden">
+        {/* Background: faded logo watermark */}
+        <div className="absolute -right-10 top-1/2 -translate-y-1/2 w-[500px] h-[500px] md:w-[700px] md:h-[700px] opacity-[0.04] pointer-events-none select-none">
+          <Image
+            src="/logo_white.svg"
+            alt=""
+            fill
+            className="object-contain"
+            aria-hidden="true"
+          />
+        </div>
+        {/* Background: gradient orbs */}
+        <div className="absolute -left-32 top-10 w-[500px] h-[500px] rounded-full bg-blue-500/15 blur-[170px] pointer-events-none" />
+        <div className="absolute -right-40 bottom-10 w-[400px] h-[400px] rounded-full bg-violet-500/10 blur-[150px] pointer-events-none" />
+
+        <div className="relative max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             {/* Video / Image placeholder */}
             <motion.div
@@ -144,36 +214,12 @@ export default function AboutSection() {
               </div>
 
               {/* Stats */}
-              <motion.div
-                className="grid grid-cols-3 gap-6 mt-10 pt-10 border-t border-white/[0.06]"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-100px' }}
-                transition={{ duration: 0.6, delay: 0.6 }}
-              >
-                <div>
-                  <p className="text-2xl md:text-3xl font-semibold">2023</p>
-                  <p className="text-xs md:text-sm text-white/40 mt-1">
-                    yildan beri
-                  </p>
-                </div>
-                <div>
-                  <p className="text-2xl md:text-3xl font-semibold">50+</p>
-                  <p className="text-xs md:text-sm text-white/40 mt-1">
-                    loyihalar
-                  </p>
-                </div>
-                <div>
-                  <p className="text-2xl md:text-3xl font-semibold">30+</p>
-                  <p className="text-xs md:text-sm text-white/40 mt-1">
-                    hamkorlar
-                  </p>
-                </div>
-              </motion.div>
+              <CountUpStats />
             </div>
           </div>
         </div>
       </section>
+      <div className="gradient-divider" />
 
       {/* Video Lightbox Modal */}
       <AnimatePresence>

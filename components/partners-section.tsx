@@ -28,11 +28,16 @@ const partners = [
 
 export default function PartnersSection() {
   return (
+    <>
     <section
       id="partners"
-      className="py-24 md:py-32 lg:py-40 px-6 border-t border-white/[0.04]"
+      className="relative py-24 md:py-32 lg:py-40 px-6 overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto">
+      {/* Background: gradient orbs */}
+      <div className="absolute -left-32 top-10 w-[500px] h-[500px] rounded-full bg-blue-500/15 blur-[170px] pointer-events-none" />
+      <div className="absolute -right-40 bottom-10 w-[400px] h-[400px] rounded-full bg-violet-500/10 blur-[150px] pointer-events-none" />
+
+      <div className="relative max-w-7xl mx-auto">
         <motion.p
           className="text-xs sm:text-sm uppercase tracking-[0.25em] text-blue-400/70 mb-4 text-center"
           initial={{ opacity: 0, y: 20 }}
@@ -104,5 +109,7 @@ export default function PartnersSection() {
         </motion.div>
       </div>
     </section>
+    <div className="gradient-divider" />
+    </>
   )
 }
