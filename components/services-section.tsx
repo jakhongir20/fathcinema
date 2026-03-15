@@ -37,7 +37,7 @@ const services = [
 ]
 
 export default function ServicesSection() {
-  const [openId, setOpenId] = useState<string | null>('marketing')
+  const [openId, setOpenId] = useState<string | null>(null)
 
   return (
     <>
