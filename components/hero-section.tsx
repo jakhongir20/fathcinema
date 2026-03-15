@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { ArrowDown } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -27,6 +28,20 @@ export default function HeroSection() {
       id="hero"
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
+      {/* Background image */}
+      <div className="absolute inset-0">
+        <Image
+          src="/hero-2.jpg"
+          alt=""
+          fill
+          className="object-cover opacity-30"
+          sizes="100vw"
+          priority
+          aria-hidden="true"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/80" />
+      </div>
+
       {/* Animated gradient background */}
       <div className="absolute inset-0">
         <motion.div
@@ -86,13 +101,13 @@ export default function HeroSection() {
 
         <motion.h1
           variants={itemVariants}
-          className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-medium tracking-tight leading-[0.95]"
+          className="text-[2.625rem] sm:text-[3.125rem] md:text-[4.125rem] lg:text-[4.875rem] xl:text-[5.625rem] font-medium tracking-tight leading-[1.15]"
         >
-          Video production
-          <br />
           <span className="bg-gradient-to-r from-blue-400 via-cyan-300 to-violet-400 bg-clip-text text-transparent">
-            va marketing
+            Performance marketing
           </span>
+          <br />
+          Video production
         </motion.h1>
 
         <motion.p

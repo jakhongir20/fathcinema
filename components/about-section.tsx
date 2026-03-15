@@ -1,9 +1,9 @@
 'use client'
 
-import { useState, useCallback, useEffect, useRef } from 'react'
+import { useState, /* useCallback, */ useEffect, useRef } from 'react'
 import Image from 'next/image'
-import { motion, AnimatePresence, useInView } from 'framer-motion'
-import { Play, X } from 'lucide-react'
+import { motion, /* AnimatePresence, */ useInView } from 'framer-motion'
+// import { Play, X } from 'lucide-react'
 
 function useCountUp(end: number, duration = 2000, inView = false) {
   const [count, setCount] = useState(0)
@@ -26,8 +26,8 @@ function useCountUp(end: number, duration = 2000, inView = false) {
   return count
 }
 
-const DEMO_VIDEO_URL =
-  'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4'
+// const DEMO_VIDEO_URL =
+//   'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4'
 
 function CountUpStats() {
   const ref = useRef<HTMLDivElement>(null)
@@ -63,22 +63,21 @@ function CountUpStats() {
 }
 
 export default function AboutSection() {
-  const [videoOpen, setVideoOpen] = useState(false)
-
-  const closeVideo = useCallback(() => setVideoOpen(false), [])
-
-  useEffect(() => {
-    if (!videoOpen) return
-    const handleKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') closeVideo()
-    }
-    document.body.style.overflow = 'hidden'
-    window.addEventListener('keydown', handleKey)
-    return () => {
-      document.body.style.overflow = ''
-      window.removeEventListener('keydown', handleKey)
-    }
-  }, [videoOpen, closeVideo])
+  // Video lightbox — kelajakda video qo'shilganda ishlatiladi
+  // const [videoOpen, setVideoOpen] = useState(false)
+  // const closeVideo = useCallback(() => setVideoOpen(false), [])
+  // useEffect(() => {
+  //   if (!videoOpen) return
+  //   const handleKey = (e: KeyboardEvent) => {
+  //     if (e.key === 'Escape') closeVideo()
+  //   }
+  //   document.body.style.overflow = 'hidden'
+  //   window.addEventListener('keydown', handleKey)
+  //   return () => {
+  //     document.body.style.overflow = ''
+  //     window.removeEventListener('keydown', handleKey)
+  //   }
+  // }, [videoOpen, closeVideo])
 
   return (
     <>
@@ -100,8 +99,31 @@ export default function AboutSection() {
 
         <div className="relative max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-            {/* Video / Image placeholder */}
+            {/* Image */}
             <motion.div
+              className="relative aspect-[4/3] rounded-2xl overflow-hidden"
+              initial={{ opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: '-100px' }}
+              transition={{ duration: 0.8, ease: [0.25, 0.4, 0.25, 1] }}
+            >
+              <Image
+                src="/hero-1.jpg"
+                alt="Fathcinema — professional videographer"
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
+
+              {/* Gradient overlay */}
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 via-violet-600/10 to-black/60" />
+
+              {/* Border */}
+              <div className="absolute inset-0 rounded-2xl border border-white/[0.08]" />
+            </motion.div>
+
+            {/* Video — kelajakda video qo'shilganda ishlatiladi */}
+            {/* <motion.div
               className="relative aspect-[4/3] rounded-2xl overflow-hidden group cursor-pointer"
               initial={{ opacity: 0, x: -40 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -109,7 +131,6 @@ export default function AboutSection() {
               transition={{ duration: 0.8, ease: [0.25, 0.4, 0.25, 1] }}
               onClick={() => setVideoOpen(true)}
             >
-              {/* Poster — preview thumbnail from demo video */}
               <video
                 className="absolute inset-0 w-full h-full object-cover opacity-50"
                 src={DEMO_VIDEO_URL}
@@ -117,11 +138,7 @@ export default function AboutSection() {
                 playsInline
                 preload="metadata"
               />
-
-              {/* Gradient overlay */}
               <div className="absolute inset-0 bg-gradient-to-br from-blue-600/30 via-violet-600/15 to-black/80" />
-
-              {/* Play button overlay */}
               <div className="absolute inset-0 flex items-center justify-center">
                 <motion.div
                   className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center group-hover:bg-white/20 transition-all duration-300"
@@ -131,10 +148,8 @@ export default function AboutSection() {
                   <Play className="w-6 h-6 md:w-7 md:h-7 text-white ml-1" />
                 </motion.div>
               </div>
-
-              {/* Border */}
               <div className="absolute inset-0 rounded-2xl border border-white/[0.08]" />
-            </motion.div>
+            </motion.div> */}
 
             {/* Text content */}
             <div>
@@ -221,8 +236,8 @@ export default function AboutSection() {
       </section>
       <div className="gradient-divider" />
 
-      {/* Video Lightbox Modal */}
-      <AnimatePresence>
+      {/* Video Lightbox Modal — kelajakda video qo'shilganda ishlatiladi */}
+      {/* <AnimatePresence>
         {videoOpen && (
           <motion.div
             className="fixed inset-0 z-[100] flex items-center justify-center"
@@ -231,13 +246,10 @@ export default function AboutSection() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
           >
-            {/* Backdrop */}
             <motion.div
               className="absolute inset-0 bg-black/90 backdrop-blur-xl"
               onClick={closeVideo}
             />
-
-            {/* Close button */}
             <motion.button
               className="absolute top-6 right-6 z-10 w-11 h-11 rounded-full bg-white/10 backdrop-blur-md border border-white/15 flex items-center justify-center text-white/70 hover:text-white hover:bg-white/20 transition-all"
               onClick={closeVideo}
@@ -249,8 +261,6 @@ export default function AboutSection() {
             >
               <X className="w-5 h-5" />
             </motion.button>
-
-            {/* Video container */}
             <motion.div
               className="relative z-10 w-[90vw] max-w-5xl aspect-video rounded-2xl overflow-hidden border border-white/[0.08] shadow-2xl shadow-black/50"
               initial={{ scale: 0.85, opacity: 0, y: 30 }}
@@ -268,7 +278,7 @@ export default function AboutSection() {
             </motion.div>
           </motion.div>
         )}
-      </AnimatePresence>
+      </AnimatePresence> */}
     </>
   )
 }

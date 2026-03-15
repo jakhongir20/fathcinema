@@ -7,22 +7,9 @@ import { cn } from '@/lib/utils'
 
 const services = [
   {
-    id: 'video',
-    number: '01',
-    title: 'Video Production',
-    icon: Film,
-    description:
-      'Yuqori sifatli video kontent ishlab chiqarish orqali brendingizni yangi darajaga olib chiqamiz.',
-    items: [
-      'Promo roliklar',
-      'Brend videolari',
-      'Intervyu & ekspert videolar',
-    ],
-  },
-  {
     id: 'marketing',
-    number: '02',
-    title: 'Performance Marketing',
+    number: '01',
+    title: 'Performance marketing',
     icon: BarChart3,
     description:
       "Maqsadli auditoriyangizga samarali yetib borish uchun to'liq marketing xizmatlarini taqdim etamiz.",
@@ -34,10 +21,23 @@ const services = [
       'Analitika & optimizatsiya',
     ],
   },
+  {
+    id: 'video',
+    number: '02',
+    title: 'Video production',
+    icon: Film,
+    description:
+      'Yuqori sifatli video kontent ishlab chiqarish orqali brendingizni yangi darajaga olib chiqamiz.',
+    items: [
+      'Promo roliklar',
+      'Brend videolari',
+      'Intervyu & ekspert videolar',
+    ],
+  },
 ]
 
 export default function ServicesSection() {
-  const [openId, setOpenId] = useState<string | null>('video')
+  const [openId, setOpenId] = useState<string | null>('marketing')
 
   return (
     <>
