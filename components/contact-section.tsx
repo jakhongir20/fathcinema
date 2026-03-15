@@ -31,8 +31,21 @@ export default function ContactSection() {
     setSubmitted(true)
   }
 
+  const formatPhone = (value: string) => {
+    const digits = value.replace(/\D/g, '').replace(/^998/, '')
+    const d = digits.slice(0, 9)
+    let result = '+998'
+    if (d.length > 0) result += ' (' + d.slice(0, 2)
+    if (d.length >= 2) result += ') '
+    if (d.length > 2) result += d.slice(2, 5)
+    if (d.length > 5) result += '-' + d.slice(5, 7)
+    if (d.length > 7) result += '-' + d.slice(7, 9)
+    return result
+  }
+
   const handleChange = (field: string, value: string) => {
-    setFormData((prev) => ({ ...prev, [field]: value }))
+    const newValue = field === 'phone' ? formatPhone(value) : value
+    setFormData((prev) => ({ ...prev, [field]: newValue }))
     if (errors[field]) {
       setErrors((prev) => {
         const next = { ...prev }
@@ -145,7 +158,7 @@ export default function ContactSection() {
                   </label>
                   <Input
                     type="tel"
-                    placeholder="+998"
+                    placeholder="+998 (__) ___-__-__"
                     value={formData.phone}
                     onChange={(e) => handleChange('phone', e.target.value)}
                     className={errors.phone ? 'border-red-500/50' : ''}

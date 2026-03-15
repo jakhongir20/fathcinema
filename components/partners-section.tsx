@@ -4,26 +4,30 @@ import Image from 'next/image'
 import { motion } from 'framer-motion'
 
 const partners = [
-  { name: 'Avlo', logo: '/logos/avlo.png' },
-  { name: 'CNC', logo: '/logos/cnc.png' },
-  { name: 'Canada', logo: '/logos/canada.png' },
-  { name: 'ChatGPT', logo: '/logos/chatgpt.png' },
-  { name: 'Deluxe', logo: '/logos/deluxe.png' },
-  { name: 'Gilam', logo: '/logos/gilam.png' },
-  { name: 'Hamkor', logo: '/logos/hamkor.png' },
-  { name: 'Mask Group', logo: '/logos/maskgroup.png' },
-  { name: 'Merit', logo: '/logos/merit.png' },
+  // Row 1
+  { name: 'SJ Academy', logo: '/logos/siluet.png' },
   { name: 'My5', logo: '/logos/my5.png' },
-  { name: 'PDP', logo: '/logos/pdp.png' },
-  { name: 'Parda', logo: '/logos/parda.png' },
+  { name: 'UzAuto Trailer', logo: '/logos/uzauto.png' },
   { name: 'Qamar', logo: '/logos/qamar.png' },
-  { name: 'Siluet', logo: '/logos/siluet.png' },
-  { name: 'Uz Auto', logo: '/logos/uzauto.png' },
-  { name: 'YumoBIO', logo: '/logos/yumobio.png' },
-  { name: 'Partner 17', logo: '/logos/image135.png' },
-  { name: 'Partner 18', logo: '/logos/image148.png' },
-  { name: 'Partner 19', logo: '/logos/image150.png' },
-  { name: 'Partner 20', logo: '/logos/image155.png' },
+  { name: 'PDP Academy', logo: '/logos/pdp.png' },
+  // Row 2
+  { name: 'Shakhnoza Pardalari', logo: '/logos/parda.png' },
+  { name: 'Avlo Mebel', logo: '/logos/avlo.png' },
+  { name: 'DR Hasan', logo: '/logos/image135.png' },
+  { name: 'Merit Chemicals', logo: '/logos/merit.png' },
+  { name: 'Hamkor Residence', logo: '/logos/hamkor.png' },
+  // Row 3
+  { name: 'Canadian School of Tashkent', logo: '/logos/canada.png' },
+  { name: 'Italy', logo: '/logos/image155.png' },
+  { name: 'Gilam Saroy', logo: '/logos/gilam.png' },
+  { name: 'GlobalSim', logo: '/logos/maskgroup.png' },
+  { name: 'CNC Electric', logo: '/logos/cnc.png' },
+  // Row 4
+  { name: 'Bozorlik', logo: '/logos/chatgpt.png' },
+  { name: 'YumaBIO', logo: '/logos/yumobio.png' },
+  { name: 'Milliooner Club', logo: '/logos/image150.png' },
+  { name: 'Chayxana', logo: '/logos/image148.png' },
+  { name: 'De-luxe Cleaning', logo: '/logos/deluxe.png' },
 ]
 
 export default function PartnersSection() {
@@ -91,13 +95,13 @@ export default function PartnersSection() {
                 },
               }}
             >
-              <div className="relative w-full h-12 md:h-14 flex items-center justify-center">
+              <div className="relative w-full h-[58px] md:h-[66px] flex items-center justify-center">
                 <Image
                   src={partner.logo}
                   alt={`${partner.name} logo`}
-                  width={140}
-                  height={56}
-                  className="object-contain max-h-12 md:max-h-14 w-auto opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-400"
+                  width={150}
+                  height={66}
+                  className="object-contain max-h-[58px] md:max-h-[66px] w-auto opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-400"
                 />
               </div>
 
