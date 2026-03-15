@@ -15,6 +15,7 @@ export default function ContactSection() {
     phone: '',
   })
   const [submitted, setSubmitted] = useState(false)
+  const [loading, setLoading] = useState(false)
   const [errors, setErrors] = useState<Record<string, boolean>>({})
 
   const validate = () => {
@@ -25,10 +26,27 @@ export default function ContactSection() {
     return Object.keys(newErrors).length === 0
   }
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
     if (!validate()) return
-    setSubmitted(true)
+    setLoading(true)
+    try {
+      await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formData.name,
+          company: formData.company,
+          position: formData.position,
+          phone: formData.phone.replace(/\D/g, ''),
+        }),
+      })
+      setSubmitted(true)
+    } catch {
+      setSubmitted(true)
+    } finally {
+      setLoading(false)
+    }
   }
 
   const formatPhone = (value: string) => {
@@ -171,9 +189,14 @@ export default function ContactSection() {
                 </div>
 
                 <div className="pt-2">
-                  <Button type="submit" size="lg" className="w-full">
-                    Yuborish
-                    <Send className="w-4 h-4 ml-2" />
+                  <Button
+                    type="submit"
+                    size="lg"
+                    className="w-full"
+                    disabled={loading}
+                  >
+                    {loading ? 'Yuborilmoqda...' : 'Yuborish'}
+                    {!loading && <Send className="w-4 h-4 ml-2" />}
                   </Button>
                 </div>
               </form>
