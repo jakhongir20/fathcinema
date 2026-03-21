@@ -52,7 +52,7 @@ export default async function LocaleLayout({
   params,
 }: {
   children: React.ReactNode
-  params: { locale: string }
+  params: Promise<{ locale: string }>
 }) {
   const { locale } = await params
 
@@ -62,7 +62,7 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} className={inter.variable}>
-      <body className={`${inter.className} noise-overlay`}>{children}</body>
+      <body className={`${inter.className} noise-overlay`} suppressHydrationWarning>{children}</body>
     </html>
   )
 }
