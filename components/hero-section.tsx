@@ -96,7 +96,7 @@ export default function HeroSection({ locale }: { locale: string }) {
       >
         <motion.p
           variants={itemVariants}
-          className="text-xs sm:text-sm uppercase tracking-[0.3em] text-white/40 mb-6 md:mb-8"
+          className="text-xs sm:text-sm uppercase tracking-[0.3em] text-white/40 mb-6 md:mb-8 hero-text-sweep"
         >
           {t.hero.badge}
         </motion.p>
