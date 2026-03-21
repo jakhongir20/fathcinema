@@ -1,26 +1,119 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Phone, Menu, X } from 'lucide-react'
+import { Phone, Menu, X, ChevronDown, Languages } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { locales, defaultLocale, localeNames, type Locale } from '@/lib/i18n'
 
 const navLinks = [
+  { href: '#hero', label: 'Bosh sahifa' },
   { href: '#about', label: 'Biz haqimizda' },
   { href: '#services', label: "Yo'nalishlar" },
   { href: '#partners', label: 'Hamkorlar' },
   { href: '#contact', label: "Bog'lanish" },
 ]
 
-export default function Header() {
+function LanguageSwitcher({ locale }: { locale: string }) {
+  const [open, setOpen] = useState(false)
+  const ref = useRef<HTMLDivElement>(null)
+  const currentLocale = locale as Locale
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) {
+        setOpen(false)
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [])
+
+  const switchLocale = (target: Locale) => {
+    setOpen(false)
+    const hash = window.location.hash
+    if (target === defaultLocale) {
+      window.location.href = `/${hash}`
+    } else {
+      window.location.href = `/${target}${hash}`
+    }
+  }
+
+  return (
+    <div ref={ref} className="relative">
+      <button
+        onClick={() => setOpen(!open)}
+        className="flex items-center gap-1.5 text-sm text-white/70 hover:text-white transition-colors duration-300"
+      >
+        <Languages className="w-4 h-4" />
+        {localeNames[currentLocale]}
+        <ChevronDown
+          className={cn(
+            'w-3.5 h-3.5 transition-transform duration-200',
+            open && 'rotate-180'
+          )}
+        />
+      </button>
+
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0, y: -4 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -4 }}
+            transition={{ duration: 0.15 }}
+            className="absolute top-full right-0 mt-2 bg-white/[0.06] backdrop-blur-xl border border-white/[0.1] rounded-lg overflow-hidden min-w-[60px]"
+          >
+            {locales
+              .filter((l) => l !== currentLocale)
+              .map((l) => (
+                <button
+                  key={l}
+                  onClick={() => switchLocale(l)}
+                  className="block w-full px-3 py-2 text-sm text-white/70 hover:text-white hover:bg-white/[0.06] transition-colors text-left"
+                >
+                  {localeNames[l]}
+                </button>
+              ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  )
+}
+
+export default function Header({ locale }: { locale: string }) {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [activeSection, setActiveSection] = useState('')
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50)
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  useEffect(() => {
+    const handleActiveSection = () => {
+      const sectionIds = navLinks.map((link) => link.href.replace('#', ''))
+      let current = ''
+
+      for (const id of sectionIds) {
+        const el = document.getElementById(id)
+        if (!el) continue
+        const rect = el.getBoundingClientRect()
+        if (rect.top <= window.innerHeight / 2) {
+          current = id
+        }
+      }
+
+      setActiveSection(current)
+    }
+
+    handleActiveSection()
+    window.addEventListener('scroll', handleActiveSection)
+    return () => window.removeEventListener('scroll', handleActiveSection)
   }, [])
 
   return (
@@ -56,14 +149,24 @@ export default function Header() {
               <a
                 key={link.href}
                 href={link.href}
-                className="text-sm text-white/50 hover:text-white transition-colors duration-300"
+                className={cn(
+                  'relative text-sm transition-colors duration-300 pb-1',
+                  activeSection === link.href.replace('#', '')
+                    ? 'text-white'
+                    : 'text-white/50 hover:text-white'
+                )}
               >
                 {link.label}
+                {activeSection === link.href.replace('#', '') && (
+                  <span className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white to-transparent" />
+                )}
               </a>
             ))}
           </nav>
 
           <div className="flex items-center gap-4">
+            <LanguageSwitcher locale={locale} />
+
             <a
               href="tel:+998998161610"
               className="hidden sm:flex items-center gap-2 text-sm text-white/70 hover:text-white transition-colors duration-300"
@@ -102,13 +205,21 @@ export default function Header() {
                 <motion.a
                   key={link.href}
                   href={link.href}
-                  className="text-2xl font-light text-white/80 hover:text-white transition-colors"
+                  className={cn(
+                    'relative text-2xl font-light transition-colors',
+                    activeSection === link.href.replace('#', '')
+                      ? 'text-white'
+                      : 'text-white/80 hover:text-white'
+                  )}
                   onClick={() => setMobileOpen(false)}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.1 }}
                 >
                   {link.label}
+                  {activeSection === link.href.replace('#', '') && (
+                    <span className="absolute -bottom-1 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white to-transparent" />
+                  )}
                 </motion.a>
               ))}
               <motion.a

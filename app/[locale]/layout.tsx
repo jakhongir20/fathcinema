@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import './globals.css'
+import { notFound } from 'next/navigation'
+import { locales, type Locale } from '@/lib/i18n'
+import '../globals.css'
 
 const inter = Inter({
   subsets: ['latin', 'cyrillic'],
@@ -41,13 +43,25 @@ export const metadata: Metadata = {
   },
 }
 
-export default function RootLayout({
+export function generateStaticParams() {
+  return locales.map((locale) => ({ locale }))
+}
+
+export default async function LocaleLayout({
   children,
+  params,
 }: {
   children: React.ReactNode
+  params: { locale: string }
 }) {
+  const { locale } = await params
+
+  if (!locales.includes(locale as Locale)) {
+    notFound()
+  }
+
   return (
-    <html lang="uz" className={inter.variable}>
+    <html lang={locale} className={inter.variable}>
       <body className={`${inter.className} noise-overlay`}>{children}</body>
     </html>
   )

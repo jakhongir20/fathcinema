@@ -7,10 +7,16 @@ import ContactSection from '@/components/contact-section'
 import FloatingCTA from '@/components/floating-cta'
 import Footer from '@/components/footer'
 
-export default function Home() {
+export default async function Home({
+  params,
+}: {
+  params: { locale: string }
+}) {
+  const { locale } = await params
+
   return (
     <>
-      <Header />
+      <Header locale={locale} />
       <main>
         <HeroSection />
         <AboutSection />
