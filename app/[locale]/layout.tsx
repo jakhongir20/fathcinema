@@ -177,7 +177,7 @@ function JsonLd({ locale }: { locale: string }) {
           itemOffered: {
             '@type': 'Service',
             name: t.services.marketing.title,
-            description: t.services.marketing.description,
+            description: t.services.marketing.shortDescription,
           },
         },
         {
@@ -185,7 +185,7 @@ function JsonLd({ locale }: { locale: string }) {
           itemOffered: {
             '@type': 'Service',
             name: t.services.video.title,
-            description: t.services.video.description,
+            description: t.services.video.shortDescription,
           },
         },
       ],

@@ -40,24 +40,56 @@ const translations = {
       title: "Yo'nalishlar",
       marketing: {
         title: 'Performance marketing',
-        description:
-          "Maqsadli auditoriyangizga samarali yetib borish uchun to'liq marketing xizmatlarini taqdim etamiz.",
+        shortDescription:
+          "Biznesingizni raqamli marketingning kuchi bilan o'siring. Biz maqsadli auditoriyangizni topib, ularni mijozga aylantiramiz.",
         items: [
-          'Tadqiqot',
-          'Strategiya',
-          'Kontent marketing',
-          'Target (Meta / Google Ads)',
-          'Analitika & optimizatsiya',
+          {
+            title: 'Tadqiqot',
+            description:
+              "Bozor va raqobatchilarni chuqur tahlil qilib, brendingiz uchun eng samarali strategik yo'nalishni aniqlaymiz.",
+          },
+          {
+            title: 'Strategiya',
+            description:
+              "Aniq maqsadlarga asoslangan marketing strategiyasini ishlab chiqamiz va uni bosqichma-bosqich amalga oshiramiz.",
+          },
+          {
+            title: 'Kontent marketing',
+            description:
+              "Auditoriyangizni jalb qiladigan va brendingizga ishonch uyg'otadigan sifatli kontent yaratamiz.",
+          },
+          {
+            title: 'Target (Meta / Google Ads)',
+            description:
+              "Facebook, Instagram va Google platformalarida maqsadli reklama kampaniyalarini sozlash va boshqarish.",
+          },
+          {
+            title: 'Analitika & optimizatsiya',
+            description:
+              "Barcha marketing faoliyatini real vaqtda kuzatib, natijalarni tahlil qilib, samaradorlikni oshiramiz.",
+          },
         ],
       },
       video: {
         title: 'Video production',
-        description:
-          'Yuqori sifatli video kontent ishlab chiqarish orqali brendingizni yangi darajaga olib chiqamiz.',
+        shortDescription:
+          "Professional video kontent orqali brendingizni yangi darajaga olib chiqamiz. Har bir kadr — sizning muvaffaqiyatingiz uchun.",
         items: [
-          'Promo roliklar',
-          'Brend videolari',
-          'Intervyu & ekspert videolar',
+          {
+            title: 'Promo roliklar',
+            description:
+              "Mahsulot va xizmatlaringizni yorqin tarzda taqdim etadigan qisqa va ta'sirli promo videolar ishlab chiqaramiz.",
+          },
+          {
+            title: 'Brend videolari',
+            description:
+              "Brendingiz tarixi, qadriyatlari va missiyasini hikoya qilib beradigan professional brend filmlari yaratamiz.",
+          },
+          {
+            title: 'Intervyu & ekspert videolar',
+            description:
+              "Kompaniya rahbarlari va soha ekspertlari bilan professional intervyu videolarini suratga olamiz.",
+          },
         ],
       },
     },
@@ -138,24 +170,56 @@ const translations = {
       title: 'Направления',
       marketing: {
         title: 'Performance marketing',
-        description:
-          'Предоставляем полный комплекс маркетинговых услуг для эффективного охвата вашей целевой аудитории.',
+        shortDescription:
+          'Развивайте бизнес с помощью цифрового маркетинга. Мы находим вашу целевую аудиторию и превращаем её в клиентов.',
         items: [
-          'Исследования',
-          'Стратегия',
-          'Контент-маркетинг',
-          'Таргет (Meta / Google Ads)',
-          'Аналитика и оптимизация',
+          {
+            title: 'Исследования',
+            description:
+              'Глубокий анализ рынка и конкурентов для определения наиболее эффективного стратегического направления вашего бренда.',
+          },
+          {
+            title: 'Стратегия',
+            description:
+              'Разрабатываем маркетинговую стратегию на основе чётких целей и поэтапно реализуем её.',
+          },
+          {
+            title: 'Контент-маркетинг',
+            description:
+              'Создаём качественный контент, который привлекает аудиторию и вызывает доверие к вашему бренду.',
+          },
+          {
+            title: 'Таргет (Meta / Google Ads)',
+            description:
+              'Настройка и управление целевыми рекламными кампаниями на платформах Facebook, Instagram и Google.',
+          },
+          {
+            title: 'Аналитика и оптимизация',
+            description:
+              'Отслеживаем всю маркетинговую активность в реальном времени, анализируем результаты и повышаем эффективность.',
+          },
         ],
       },
       video: {
         title: 'Video production',
-        description:
-          'Выводим ваш бренд на новый уровень через производство высококачественного видеоконтента.',
+        shortDescription:
+          'Выводим ваш бренд на новый уровень с помощью профессионального видеоконтента. Каждый кадр — для вашего успеха.',
         items: [
-          'Промо ролики',
-          'Брендовые видео',
-          'Интервью и экспертные видео',
+          {
+            title: 'Промо ролики',
+            description:
+              'Создаём короткие и эффектные промо видео для яркой презентации ваших продуктов и услуг.',
+          },
+          {
+            title: 'Брендовые видео',
+            description:
+              'Создаём профессиональные бренд-фильмы, рассказывающие историю, ценности и миссию вашего бренда.',
+          },
+          {
+            title: 'Интервью и экспертные видео',
+            description:
+              'Снимаем профессиональные интервью с руководителями компаний и отраслевыми экспертами.',
+          },
         ],
       },
     },
@@ -236,24 +300,56 @@ const translations = {
       title: 'Our Services',
       marketing: {
         title: 'Performance marketing',
-        description:
-          'We provide a full range of marketing services to effectively reach your target audience.',
+        shortDescription:
+          'Grow your business with the power of digital marketing. We find your target audience and turn them into customers.',
         items: [
-          'Research',
-          'Strategy',
-          'Content Marketing',
-          'Targeting (Meta / Google Ads)',
-          'Analytics & Optimization',
+          {
+            title: 'Research',
+            description:
+              'Deep market and competitor analysis to identify the most effective strategic direction for your brand.',
+          },
+          {
+            title: 'Strategy',
+            description:
+              'We develop a marketing strategy based on clear objectives and implement it step by step.',
+          },
+          {
+            title: 'Content Marketing',
+            description:
+              'We create quality content that attracts your audience and builds trust in your brand.',
+          },
+          {
+            title: 'Targeting (Meta / Google Ads)',
+            description:
+              'Setting up and managing targeted advertising campaigns on Facebook, Instagram, and Google platforms.',
+          },
+          {
+            title: 'Analytics & Optimization',
+            description:
+              'We monitor all marketing activities in real time, analyze results, and improve efficiency.',
+          },
         ],
       },
       video: {
         title: 'Video production',
-        description:
-          'We take your brand to the next level through high-quality video content production.',
+        shortDescription:
+          'Take your brand to the next level with professional video content. Every frame is crafted for your success.',
         items: [
-          'Promo videos',
-          'Brand videos',
-          'Interviews & expert videos',
+          {
+            title: 'Promo videos',
+            description:
+              'We create short and impactful promo videos to vividly showcase your products and services.',
+          },
+          {
+            title: 'Brand videos',
+            description:
+              'We produce professional brand films that tell the story, values, and mission of your brand.',
+          },
+          {
+            title: 'Interviews & expert videos',
+            description:
+              'We shoot professional interviews with company leaders and industry experts.',
+          },
         ],
       },
     },
