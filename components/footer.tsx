@@ -3,8 +3,11 @@
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { Phone, Mail, MapPin } from 'lucide-react'
+import { getTranslations } from '@/lib/translations'
 
-export default function Footer() {
+export default function Footer({ locale }: { locale: string }) {
+  const t = getTranslations(locale)
+
   return (
     <footer className="border-t border-white/[0.06] py-12 md:py-16 px-6">
       <div className="max-w-7xl mx-auto">
@@ -24,8 +27,7 @@ export default function Footer() {
               className="h-11 w-auto mb-4"
             />
             <p className="text-sm text-white/40 leading-relaxed max-w-xs">
-              Video production va performance marketing orqali brendingizni
-              rivojlantiring.
+              {t.footer.description}
             </p>
           </motion.div>
 
@@ -37,32 +39,32 @@ export default function Footer() {
             transition={{ duration: 0.6, delay: 0.1 }}
           >
             <h4 className="text-sm font-medium text-white/60 mb-4">
-              Sahifalar
+              {t.footer.pages}
             </h4>
             <nav className="space-y-2.5">
               <a
                 href="#about"
                 className="block text-sm text-white/40 hover:text-white transition-colors"
               >
-                Biz haqimizda
+                {t.nav.about}
               </a>
               <a
                 href="#services"
                 className="block text-sm text-white/40 hover:text-white transition-colors"
               >
-                Yo&apos;nalishlar
+                {t.nav.services}
               </a>
               <a
                 href="#partners"
                 className="block text-sm text-white/40 hover:text-white transition-colors"
               >
-                Hamkorlar
+                {t.nav.partners}
               </a>
               <a
                 href="#contact"
                 className="block text-sm text-white/40 hover:text-white transition-colors"
               >
-                Bog&apos;lanish
+                {t.nav.contact}
               </a>
             </nav>
           </motion.div>
@@ -75,7 +77,7 @@ export default function Footer() {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <h4 className="text-sm font-medium text-white/60 mb-4">
-              Aloqa
+              {t.footer.contactTitle}
             </h4>
             <div className="space-y-3">
               <a
@@ -94,7 +96,7 @@ export default function Footer() {
               </a>
               <p className="flex items-center gap-2.5 text-sm text-white/40">
                 <MapPin className="w-3.5 h-3.5 flex-shrink-0" />
-                Toshkent, O&apos;zbekiston
+                {t.footer.location}
               </p>
             </div>
           </motion.div>
@@ -103,8 +105,8 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="mt-12 pt-6 border-t border-white/[0.06] flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-xs text-white/25">
-            &copy; {new Date().getFullYear()} Fathcinema. Barcha huquqlar
-            himoyalangan.
+            &copy; {new Date().getFullYear()} Fathcinema.{' '}
+            {t.footer.copyright}
           </p>
           <div className="flex items-center gap-1 text-xs text-white/25">
             <span>Powered by</span>

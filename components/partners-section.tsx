@@ -2,6 +2,7 @@
 
 import Image from 'next/image'
 import { motion } from 'framer-motion'
+import { getTranslations } from '@/lib/translations'
 
 const partners = [
   // Row 1
@@ -30,7 +31,9 @@ const partners = [
   { name: 'De-luxe Cleaning', logo: '/logos/deluxe.png' },
 ]
 
-export default function PartnersSection() {
+export default function PartnersSection({ locale }: { locale: string }) {
+  const t = getTranslations(locale)
+
   return (
     <>
     <section
@@ -49,7 +52,7 @@ export default function PartnersSection() {
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.6 }}
         >
-          Ishonch
+          {t.partners.badge}
         </motion.p>
 
         <motion.h2
@@ -59,7 +62,7 @@ export default function PartnersSection() {
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.6, delay: 0.1 }}
         >
-          Hamkorlarimiz
+          {t.partners.title}
         </motion.h2>
 
         <motion.p
@@ -69,7 +72,7 @@ export default function PartnersSection() {
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          Turli sohalardagi yetakchi kompaniyalar bilan hamkorlik qilamiz
+          {t.partners.description}
         </motion.p>
 
         <motion.div

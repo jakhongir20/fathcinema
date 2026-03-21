@@ -6,8 +6,10 @@ import { motion } from 'framer-motion'
 import { Send, CheckCircle2 } from 'lucide-react'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
+import { getTranslations } from '@/lib/translations'
 
-export default function ContactSection() {
+export default function ContactSection({ locale }: { locale: string }) {
+  const t = getTranslations(locale)
   const [formData, setFormData] = useState({
     name: '',
     company: '',
@@ -97,10 +99,8 @@ export default function ContactSection() {
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.8, ease: [0.25, 0.4, 0.25, 1] }}
         >
-          Biz bilan hamkorlik qilish uchun{' '}
-          <span className="text-white/40">
-            ro&apos;yxatdan o&apos;ting va siz bilan qayta bog&apos;lanamiz
-          </span>
+          {t.contact.title}
+          <span className="text-white/40">{t.contact.titleAccent}</span>
         </motion.h2>
 
         <motion.div
@@ -123,37 +123,36 @@ export default function ContactSection() {
               >
                 <CheckCircle2 className="w-14 h-14 text-green-400 mx-auto mb-4" />
                 <h3 className="text-xl md:text-2xl font-medium mb-2">
-                  Rahmat!
+                  {t.contact.successTitle}
                 </h3>
-                <p className="text-white/50">
-                  Tez orada siz bilan bog&apos;lanamiz.
-                </p>
+                <p className="text-white/50">{t.contact.successMessage}</p>
               </motion.div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-5">
                 <div>
                   <label className="text-sm text-white/40 mb-2 block">
-                    Ismingiz <span className="text-red-400">*</span>
+                    {t.contact.nameLabel}{' '}
+                    <span className="text-red-400">*</span>
                   </label>
                   <Input
-                    placeholder="Ismingizni kiriting"
+                    placeholder={t.contact.namePlaceholder}
                     value={formData.name}
                     onChange={(e) => handleChange('name', e.target.value)}
                     className={errors.name ? 'border-red-500/50' : ''}
                   />
                   {errors.name && (
                     <p className="text-xs text-red-400 mt-1.5">
-                      Ismingizni kiriting
+                      {t.contact.nameError}
                     </p>
                   )}
                 </div>
 
                 <div>
                   <label className="text-sm text-white/40 mb-2 block">
-                    Kompaniyangiz nomi
+                    {t.contact.companyLabel}
                   </label>
                   <Input
-                    placeholder="Kompaniya nomi"
+                    placeholder={t.contact.companyPlaceholder}
                     value={formData.company}
                     onChange={(e) => handleChange('company', e.target.value)}
                   />
@@ -161,10 +160,10 @@ export default function ContactSection() {
 
                 <div>
                   <label className="text-sm text-white/40 mb-2 block">
-                    Amaldagi lavozimingiz
+                    {t.contact.positionLabel}
                   </label>
                   <Input
-                    placeholder="Lavozimingiz"
+                    placeholder={t.contact.positionPlaceholder}
                     value={formData.position}
                     onChange={(e) => handleChange('position', e.target.value)}
                   />
@@ -172,18 +171,19 @@ export default function ContactSection() {
 
                 <div>
                   <label className="text-sm text-white/40 mb-2 block">
-                    Telefon raqamingiz <span className="text-red-400">*</span>
+                    {t.contact.phoneLabel}{' '}
+                    <span className="text-red-400">*</span>
                   </label>
                   <Input
                     type="tel"
-                    placeholder="+998 (__) ___-__-__"
+                    placeholder={t.contact.phonePlaceholder}
                     value={formData.phone}
                     onChange={(e) => handleChange('phone', e.target.value)}
                     className={errors.phone ? 'border-red-500/50' : ''}
                   />
                   {errors.phone && (
                     <p className="text-xs text-red-400 mt-1.5">
-                      Telefon raqamingizni kiriting
+                      {t.contact.phoneError}
                     </p>
                   )}
                 </div>
@@ -195,7 +195,7 @@ export default function ContactSection() {
                     className="w-full"
                     disabled={loading}
                   >
-                    {loading ? 'Yuborilmoqda...' : 'Yuborish'}
+                    {loading ? t.contact.submitting : t.contact.submit}
                     {!loading && <Send className="w-4 h-4 ml-2" />}
                   </Button>
                 </div>

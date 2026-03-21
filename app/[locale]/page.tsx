@@ -18,14 +18,14 @@ export default async function Home({
     <>
       <Header locale={locale} />
       <main>
-        <HeroSection />
-        <AboutSection />
-        <ServicesSection />
-        <PartnersSection />
-        <ContactSection />
+        <HeroSection locale={locale} />
+        <AboutSection locale={locale} />
+        <ServicesSection locale={locale} />
+        <PartnersSection locale={locale} />
+        <ContactSection locale={locale} />
       </main>
-      <Footer />
-      <FloatingCTA />
+      <Footer locale={locale} />
+      <FloatingCTA locale={locale} />
     </>
   )
 }

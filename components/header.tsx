@@ -6,14 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Phone, Menu, X, ChevronDown, Languages } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { locales, defaultLocale, localeNames, type Locale } from '@/lib/i18n'
-
-const navLinks = [
-  { href: '#hero', label: 'Bosh sahifa' },
-  { href: '#about', label: 'Biz haqimizda' },
-  { href: '#services', label: "Yo'nalishlar" },
-  { href: '#partners', label: 'Hamkorlar' },
-  { href: '#contact', label: "Bog'lanish" },
-]
+import { getTranslations } from '@/lib/translations'
 
 function LanguageSwitcher({ locale }: { locale: string }) {
   const [open, setOpen] = useState(false)
@@ -84,9 +77,18 @@ function LanguageSwitcher({ locale }: { locale: string }) {
 }
 
 export default function Header({ locale }: { locale: string }) {
+  const t = getTranslations(locale)
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [activeSection, setActiveSection] = useState('')
+
+  const navLinks = [
+    { href: '#hero', label: t.nav.home },
+    { href: '#about', label: t.nav.about },
+    { href: '#services', label: t.nav.services },
+    { href: '#partners', label: t.nav.partners },
+    { href: '#contact', label: t.nav.contact },
+  ]
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50)
@@ -114,6 +116,7 @@ export default function Header({ locale }: { locale: string }) {
     handleActiveSection()
     window.addEventListener('scroll', handleActiveSection)
     return () => window.removeEventListener('scroll', handleActiveSection)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (

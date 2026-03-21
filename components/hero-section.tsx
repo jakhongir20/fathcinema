@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { ArrowDown } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { getTranslations } from '@/lib/translations'
 
 const containerVariants = {
   hidden: {},
@@ -22,7 +23,9 @@ const itemVariants = {
   },
 }
 
-export default function HeroSection() {
+export default function HeroSection({ locale }: { locale: string }) {
+  const t = getTranslations(locale)
+
   return (
     <section
       id="hero"
@@ -96,7 +99,7 @@ export default function HeroSection() {
           variants={itemVariants}
           className="text-xs sm:text-sm uppercase tracking-[0.3em] text-white/40 mb-6 md:mb-8"
         >
-          Creative Agency
+          {t.hero.badge}
         </motion.p>
 
         <motion.h1
@@ -104,18 +107,17 @@ export default function HeroSection() {
           className="text-[2.625rem] sm:text-[3.125rem] md:text-[4.125rem] lg:text-[4.875rem] xl:text-[5.625rem] font-medium tracking-tight leading-[1.15]"
         >
           <span className="bg-gradient-to-r from-blue-400 via-cyan-300 to-violet-400 bg-clip-text text-transparent">
-            Performance marketing
+            {t.hero.title1}
           </span>
           <br />
-          Video production
+          {t.hero.title2}
         </motion.h1>
 
         <motion.p
           variants={itemVariants}
           className="mt-6 md:mt-8 text-base md:text-lg text-white/40 max-w-xl mx-auto leading-relaxed"
         >
-          Brend pozitsiyasini shakllantirish, video kontent ishlab chiqarish va
-          performance marketing orqali biznesingizni rivojlantiring.
+          {t.hero.description}
         </motion.p>
 
         <motion.div
@@ -123,10 +125,10 @@ export default function HeroSection() {
           className="flex flex-col sm:flex-row gap-4 justify-center mt-10 md:mt-12"
         >
           <Button size="lg" asChild>
-            <a href="#contact">Bog&apos;lanish</a>
+            <a href="#contact">{t.hero.cta}</a>
           </Button>
           <Button variant="outline" size="lg" asChild>
-            <a href="#about">Biz haqimizda</a>
+            <a href="#about">{t.hero.learnMore}</a>
           </Button>
         </motion.div>
       </motion.div>

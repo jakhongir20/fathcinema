@@ -4,40 +4,30 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Film, BarChart3, ChevronDown } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { getTranslations } from '@/lib/translations'
 
-const services = [
-  {
-    id: 'marketing',
-    number: '01',
-    title: 'Performance marketing',
-    icon: BarChart3,
-    description:
-      "Maqsadli auditoriyangizga samarali yetib borish uchun to'liq marketing xizmatlarini taqdim etamiz.",
-    items: [
-      'Tadqiqot',
-      'Strategiya',
-      'Kontent marketing',
-      'Target (Meta / Google Ads)',
-      'Analitika & optimizatsiya',
-    ],
-  },
-  {
-    id: 'video',
-    number: '02',
-    title: 'Video production',
-    icon: Film,
-    description:
-      'Yuqori sifatli video kontent ishlab chiqarish orqali brendingizni yangi darajaga olib chiqamiz.',
-    items: [
-      'Promo roliklar',
-      'Brend videolari',
-      'Intervyu & ekspert videolar',
-    ],
-  },
-]
-
-export default function ServicesSection() {
+export default function ServicesSection({ locale }: { locale: string }) {
+  const t = getTranslations(locale)
   const [openId, setOpenId] = useState<string | null>(null)
+
+  const services = [
+    {
+      id: 'marketing',
+      number: '01',
+      title: t.services.marketing.title,
+      icon: BarChart3,
+      description: t.services.marketing.description,
+      items: t.services.marketing.items,
+    },
+    {
+      id: 'video',
+      number: '02',
+      title: t.services.video.title,
+      icon: Film,
+      description: t.services.video.description,
+      items: t.services.video.items,
+    },
+  ]
 
   return (
     <>
@@ -54,7 +44,7 @@ export default function ServicesSection() {
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.6 }}
         >
-          Xizmatlar
+          {t.services.badge}
         </motion.p>
 
         <motion.h2
@@ -64,7 +54,7 @@ export default function ServicesSection() {
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.6, delay: 0.1 }}
         >
-          Yo&apos;nalishlar
+          {t.services.title}
         </motion.h2>
 
         <div className="space-y-4">

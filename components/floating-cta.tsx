@@ -3,8 +3,10 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Phone } from 'lucide-react'
+import { getTranslations } from '@/lib/translations'
 
-export default function FloatingCTA() {
+export default function FloatingCTA({ locale }: { locale: string }) {
+  const t = getTranslations(locale)
   const [visible, setVisible] = useState(false)
 
   useEffect(() => {
@@ -25,7 +27,7 @@ export default function FloatingCTA() {
           transition={{ type: 'spring', stiffness: 260, damping: 20 }}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
-          aria-label="Qo'ng'iroq qilish"
+          aria-label={t.floatingCta.ariaLabel}
         >
           <Phone className="w-5 h-5 text-white" />
 
