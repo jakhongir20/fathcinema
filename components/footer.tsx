@@ -38,9 +38,9 @@ export default function Footer({ locale }: { locale: string }) {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
-            <h4 className="text-sm font-medium text-white/60 mb-4">
+            <h3 className="text-sm font-medium text-white/60 mb-4">
               {t.footer.pages}
-            </h4>
+            </h3>
             <nav className="space-y-2.5">
               <a
                 href="#about"
@@ -76,9 +76,9 @@ export default function Footer({ locale }: { locale: string }) {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <h4 className="text-sm font-medium text-white/60 mb-4">
+            <h3 className="text-sm font-medium text-white/60 mb-4">
               {t.footer.contactTitle}
-            </h4>
+            </h3>
             <div className="space-y-3">
               <a
                 href="tel:+998998161610"

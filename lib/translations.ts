@@ -1,5 +1,11 @@
 const translations = {
   uz: {
+    metadata: {
+      title: 'Video Production va Marketing Agentligi | Fathcinema',
+      description:
+        "Fathcinema — video production va marketing agentligi. Brend pozitsiyasini shakllantirish, yuqori sifatli video kontent ishlab chiqarish va performance marketing orqali biznesingizni rivojlantiring. Toshkentdagi professional reklama agentligi.",
+      ogLocale: 'uz_UZ',
+    },
     nav: {
       home: 'Bosh sahifa',
       about: 'Biz haqimizda',
@@ -27,6 +33,7 @@ const translations = {
       statYear: 'yildan beri',
       statProjects: 'loyihalar',
       statPartners: 'hamkorlar',
+      imageAlt: 'Fathcinema professional videograf ish jarayonida',
     },
     services: {
       badge: 'Xizmatlar',
@@ -91,6 +98,12 @@ const translations = {
     },
   },
   ru: {
+    metadata: {
+      title: 'Видеопродакшн и маркетинговое агентство | Fathcinema',
+      description:
+        'Fathcinema — агентство видеопродакшна и маркетинга. Формирование позиции бренда, производство качественного видеоконтента и performance marketing для развития вашего бизнеса. Профессиональное рекламное агентство в Ташкенте.',
+      ogLocale: 'ru_RU',
+    },
     nav: {
       home: 'Главная',
       about: 'О нас',
@@ -118,6 +131,7 @@ const translations = {
       statYear: 'с года',
       statProjects: 'проекты',
       statPartners: 'партнёры',
+      imageAlt: 'Профессиональный видеограф Fathcinema за работой',
     },
     services: {
       badge: 'Услуги',
@@ -182,6 +196,12 @@ const translations = {
     },
   },
   en: {
+    metadata: {
+      title: 'Video Production & Marketing Agency | Fathcinema',
+      description:
+        'Fathcinema is a video production and marketing agency. We help build brand positioning, create high-quality video content, and grow businesses through performance marketing. Professional advertising agency in Tashkent.',
+      ogLocale: 'en_US',
+    },
     nav: {
       home: 'Home',
       about: 'About Us',
@@ -209,6 +229,7 @@ const translations = {
       statYear: 'since year',
       statProjects: 'projects',
       statPartners: 'partners',
+      imageAlt: 'Fathcinema professional videographer at work',
     },
     services: {
       badge: 'Services',

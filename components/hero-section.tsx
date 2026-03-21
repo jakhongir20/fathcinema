@@ -35,12 +35,11 @@ export default function HeroSection({ locale }: { locale: string }) {
       <div className="absolute inset-0">
         <Image
           src="/hero-2.jpg"
-          alt=""
+          alt="Fathcinema video production studio"
           fill
           className="object-cover opacity-30"
           sizes="100vw"
           priority
-          aria-hidden="true"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/80" />
       </div>

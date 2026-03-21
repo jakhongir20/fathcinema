@@ -99,7 +99,7 @@ export default function AboutSection({ locale }: { locale: string }) {
             >
               <Image
                 src="/hero-1.jpg"
-                alt="Fathcinema — professional videographer"
+                alt={t.about.imageAlt}
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw"
